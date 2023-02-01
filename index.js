@@ -53,7 +53,7 @@ console.log(`Number:${number}\nFactorial:${factorial(number)}\nSquare:${square(n
 		value = prompt('input symbols (1 < symbols <= 3)','');
 		console.log("Incorrect input!");
 	}
-	
+	const res=value.trim();
 	let number=+(prompt('input number (number > 0 && number < 10 && number is Integer )', ''));
 
 	while(!(number > 0 &&  number < 10 && Number.isInteger(number))){
@@ -67,7 +67,7 @@ console.log(`Number:${number}\nFactorial:${factorial(number)}\nSquare:${square(n
 	}
 	for(let i=0;i<number;i++){
 		for(let j=0;j<number;j++){
-			arr[i][j]=value.trim();
+			arr[i][j]=res;
 		}
 	}
 
