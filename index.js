@@ -1,14 +1,16 @@
 // task_1:
-(function(){
-	
-	let number=+(prompt('input number (number > 0 && number is Integer)', ''));
+(function(){	
+	let number=+(prompt('input number (number >= 0 && number is Integer)', ''));
 
-	while(!(number > 0 && Number.isInteger(number))){
+	while(!(number >= 0 && Number.isInteger(number))){
 		number=+(prompt('input number (number < 0 && number is Integer)', ''));
 		console.log("Incorrect input!")		
 	}
 	
 function factorial(num){
+	if (num === 0) { 
+		return 1;
+	}
 	return (num != 1) ? num * factorial(num - 1 ) : 1;
 }
 
@@ -28,6 +30,9 @@ function isEven(num){
 }
 
 function delimeters(num){
+	if(num === 0) {
+		return 0;
+	}
 	let result=[];
 	for(let i = num; i >= 0; i-- ){
 		if(num % i == 0){
@@ -38,11 +43,10 @@ function delimeters(num){
 }
 
 console.log(`Number:${number}\nFactorial:${factorial(number)}\nSquare:${square(number)}\nisPrime:${isPrime(number)}\nisEven:${isEven(number)}\nDelimeters:${delimeters(number)}`);	
-}())
+}());
 
 // task_2:
 (function (){
-
 	let value = prompt('input symbols (1 < symbols <= 3)','');
 	
 	while(!(value.length <= 3 && value.length > 0 && !checkSpaces(value))){
@@ -74,4 +78,4 @@ console.log(`Number:${number}\nFactorial:${factorial(number)}\nSquare:${square(n
 	const print = arr.map((d) => d.join(" ")).join("\n");
 
 	console.log(print);	
-}())
+}());
