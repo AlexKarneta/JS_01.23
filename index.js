@@ -67,7 +67,7 @@ console.log(`Number:${number}\nFactorial:${factorial(number)}\nSquare:${square(n
 	}
 	for(let i=0;i<number;i++){
 		for(let j=0;j<number;j++){
-			arr[i][j]=value;
+			arr[i][j]=value.trim();
 		}
 	}
 
