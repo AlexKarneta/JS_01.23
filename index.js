@@ -1,5 +1,5 @@
 function makeDeepCopy(obj) {
-  if (!arguments.length || typeof obj !== 'object') {
+  if (!arguments.length || typeof obj !== "object") {
     throw new Error();
   }
   let duplicate;
@@ -9,11 +9,22 @@ function makeDeepCopy(obj) {
   } else {
     duplicate = {};
   }
-
+  if (obj instanceof Set) {
+    duplicate = new Set();
+    obj.forEach((item) => {
+      duplicate.add(makeDeepCopy(item));
+    });
+    return duplicate;
+  }
+  if (obj instanceof Date) {
+    duplicate = new Date();
+    duplicate.setTime(obj.getTime());
+    return duplicate;
+  }
   const ITER_OBJ = obj instanceof Map ? [...obj] : obj;
 
   for (const prop in ITER_OBJ) {
-    if (typeof ITER_OBJ[prop] == 'object') {
+    if (typeof ITER_OBJ[prop] == "object") {
       duplicate[prop] = makeDeepCopy(ITER_OBJ[prop]);
     } else {
       duplicate[prop] = ITER_OBJ[prop];
@@ -33,7 +44,7 @@ function selectFromInterval(arr, startIndex, endIndex) {
     throw new Error();
   }
 
-  if (arr.every((item) => typeof item == 'number')) {
+  if (arr.every((item) => typeof item == "number")) {
     let res = [startIndex, endIndex];
     res.sort((a, b) => a - b);
     let start = res[0],
