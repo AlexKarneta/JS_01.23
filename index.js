@@ -34,8 +34,8 @@ const createDebounceFunction = function (cb, ms) {
   return function () {
     const cbCall = () => {
       cb.apply(this, arguments);
-      clearTimeout(timeout);
-      timeout = setTimeout(cbCall, ms);
     };
+    clearTimeout(timeout);
+    timeout = setTimeout(cbCall, ms);
   };
 };
