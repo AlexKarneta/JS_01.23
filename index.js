@@ -25,3 +25,17 @@ Array.prototype.customFilter = function (cb, arg) {
 
   return res;
 };
+
+const createDebounceFunction = function (cb, ms) {
+  if (typeof cb !== "function") {
+    throw new Error();
+  }
+  let timeout;
+  return function () {
+    const cbCall = () => {
+      cb.apply(this, arguments);
+      clearTimeout(timeout);
+      timeout = setTimeout(cbCall, ms);
+    };
+  };
+};
