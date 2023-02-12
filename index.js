@@ -10,6 +10,8 @@ function curry(cb) {
 	}; 
  }
 
+ //t2
+
  class Calculator{
 	constructor(x,y){
 		if(validNumber(x) && validNumber(y)){
@@ -53,3 +55,45 @@ function curry(cb) {
  function validNumber(number){
 	return typeof number ==='number' && isFinite(number);
  }
+
+ //t3
+ class RickAndMorty{
+	constructor(){}
+	getCharacter(id){
+		if(!validCheck(id)){
+			throw new Error();
+		}		
+		return fetch(`https://rickandmortyapi.com/api/character/${id}`)
+			.then(responce=>{
+				if(responce.ok){
+					return responce.json();
+				}else{
+					return null;
+				}
+			})
+			.catch(e=>{throw new Error(e);});	
+	}
+	async	getEpisode(id){		
+		if(!validCheck(id)){
+			throw new Error();
+		}
+		try{
+			const RESP=await fetch(`https://rickandmortyapi.com/api/episode/${id}`)
+			if(RESP.ok){
+				return await RESP.json();
+			}else {
+				return null;
+			}				
+		} catch(e){
+			throw new Error(e)
+		}
+		
+	}
+}
+function validCheck(num){
+	if(num && Number.isInteger(num) && num>0 ){
+		return true;
+	}else{
+		return false;
+	}
+}
