@@ -38,3 +38,59 @@ class Stack{
 		return this.arr;
 	}
 }
+//t2
+class listNode{
+	constructor(value,next=null){
+		this.value=value;
+		this.next=next;
+	}
+}
+class LinkedList{
+	constructor(){
+		this.head=null;
+		this.tail=null;
+	}	
+	append(value){
+		const newNode=new listNode(value);
+		if(!this.head || !this.tail){
+			this.head=newNode;
+			this.tail=newNode;
+			return this;
+		}
+		this.tail.next=newNode;
+		this.tail=newNode;
+		return this;
+	}
+	prepend(value){
+		const newNode=new listNode(value,this.head);
+		this.head=newNode;
+		if(!this.tail){
+			this.tail=newNode;
+		}
+		return this;
+	}
+	find(value){
+		if(!this.head){
+			return null;
+		}
+		let current=this.head;
+		while(current){
+			if(current.value===value){
+				return current;
+			}
+			current=current.next;
+		}
+		return null;
+	}
+	toArray(){
+		const res=[];
+		let current=this.head;
+		while(current){
+			res.push(current);
+			current=current.next;
+		}
+		return res;
+	}
+}
+
+//t3
