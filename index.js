@@ -1,5 +1,13 @@
 class Stack{
-	constructor(stackLength=10){		
+	constructor(stackLength){	
+		if (stackLength) {
+			if (!(Number.isFinite(stackLength) && Number.isInteger(stackLength) && stackLength > 0)) {
+				throw new Error('Invalid limit value');
+			}
+			this.stackLength = stackLength;
+		} else {
+			this.stackLength = 10;
+		}		
 		this.stackLength=stackLength;
 		this.arr=[];
 	}
@@ -12,7 +20,6 @@ class Stack{
 	pop(){
 		if(this.arr.length){
 			let element=this.arr[this.arr.length-1];
-
 			delete this.arr[this.arr.length-1];
 			this.arr.length--;
 			return element;
@@ -33,9 +40,15 @@ class Stack{
 		}
 		return res;
 	}
-
-	showArr(){
-		return this.arr;
+	static fromIterable(iterable) {
+		if (!iterable[Symbol.iterator]) {
+			throw new Error('Not iterable');
+		}		
+		let res = new Stack(iterable.length);  
+		for (let i = 0; i < iterable.length; i++) {
+			res.push(iterable[i]);
+		}
+		return res;
 	}
 }
 //t2
@@ -89,6 +102,16 @@ class LinkedList{
 			res.push(current);
 			current=current.next;
 		}
+		return res;
+	}
+	static fromIterable(iterable) {
+		if (!iterable[Symbol.iterator]) {
+			throw new Error('Not iterable');
+		}		
+		let res = new LinkedList();  
+		for (let i = 0; i < iterable.length; i++) {
+			res.append(iterable[i]);
+		}		
 		return res;
 	}
 }
